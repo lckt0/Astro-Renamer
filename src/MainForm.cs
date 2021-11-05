@@ -64,7 +64,7 @@ namespace Astro_Renamer
                 if (file.ToLower().EndsWith(".exe"))
                 {
                     string newname = file.Substring(0, file.Length - 4) + "-astro.exe";
-                    if (newname.Contains(oldValue))
+                    if (newname.Contains(oldValue) && fileBool)
                     {
                         newname = newname.Replace(oldValue, newValue);
                     }
@@ -82,7 +82,7 @@ namespace Astro_Renamer
                 if (file.ToLower().EndsWith(".dll"))
                 {
                     string newname = file.Substring(0, file.Length - 4) + "-astro.dll";
-                    if (newname.Contains(oldValue))
+                    if (newname.Contains(oldValue) && fileBool)
                     {
                         newname = newname.Replace(oldValue, newValue);
                     }
@@ -106,9 +106,9 @@ namespace Astro_Renamer
                     MessageBox.Show("Rename process is successfully completed!\nRenamed Things: " + countx, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch
+            catch (Exception a)
             {
-                MessageBox.Show("An error occured while saving file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occured while saving file!\nException: {a.Message.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             processProgress.Value = 0;
